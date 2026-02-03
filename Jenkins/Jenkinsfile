@@ -1,0 +1,34 @@
+pipeline{
+    agent any
+
+    stages{
+        stage('Checkout'){
+            steps{
+                git branch: 'main', url: 'https://github.com/Supriya-lr/k8s-observability-pipeline.git'
+            }
+        }
+
+        stage('Deploy to Staging'){
+            steps{
+                sh 'kubectl apply -k k8s/overlays/staging'
+            }
+        }
+
+        stage('Verify Staging Deployment'){
+            steps{
+                sh 'kubectl get pods -n monitoring-staging'
+            }
+        }
+
+        stage('Deploy to Production'){
+            when{
+                branch 'main'
+            }
+            steps{
+                sh 'kubectl apply -k k8s/overlays/prod'
+            }
+
+        }
+    }
+
+}
