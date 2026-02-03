@@ -1,0 +1,12 @@
+resources:
+- ../../base/namespace.yaml
+- ../../base/node-exporter/node-exporter-daemonset.yaml
+- ../../base/prometheus/prometheus-config.yaml
+- ../../base/prometheus/prometheus-deployment.yaml
+- ../../base/prometheus/prometheus-service.yaml
+- ../../base/grafana/grafana-deployment.yaml
+- ../../base/grafana/grafana-service.yaml
+- ../../base/grafana/grafana-datasource.yaml
+
+
+namespace: monitoring-staging
